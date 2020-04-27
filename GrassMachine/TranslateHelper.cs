@@ -91,7 +91,16 @@ namespace GrassMachine
                 Application.DoEvents();
                 JObject jParser = JObject.Parse(retJson);
 
-                if ()
+                try
+                {
+                    if (jParser["error_code"].ToString() == "54003")
+                    {
+                        Delay(2000);
+                        goto BEGIN;
+                    }
+                }
+                catch (Exception) { }
+
                 cur = Uri.UnescapeDataString(jParser["trans_result"][0]["dst"].ToString());
 
                 Delay(1500);
